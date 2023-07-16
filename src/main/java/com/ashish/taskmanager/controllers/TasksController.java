@@ -2,11 +2,10 @@ package com.ashish.taskmanager.controllers;
 
 import com.ashish.taskmanager.entities.TaskEntity;
 import com.ashish.taskmanager.services.TaskService;
+import dto.CreateTaskDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpResponse;
 import java.util.List;
@@ -34,10 +33,16 @@ public class TasksController {
     public ResponseEntity<TaskEntity> getTaskById(int id) {
         var task = tasksService.getTaskById(id);
 
-        if(task == null) {
+        if (task == null) {
             return ResponseEntity.notFound().build();
         }
 
+        return ResponseEntity.ok(task);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<TaskEntity> addTask(@RequestBody CreateTaskDTO taskDTO) {
+        var task = tasksService.addTask(taskDTO.getTitle(), taskDTO.getDescription(), taskDTO.getDeadline());
         return ResponseEntity.ok(task);
     }
 
