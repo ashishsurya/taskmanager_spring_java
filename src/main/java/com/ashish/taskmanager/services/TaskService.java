@@ -20,7 +20,7 @@ public class TaskService {
         task.setId(taskId);
         task.setTitle(title);
         task.setDescription(description);
-        task.setDeadline(new Date(deadline)); // TODO : validate date format YYYY-MM-DD
+//        task.setDeadline(new Date(deadline)); // TODO : validate date format YYYY-MM-DD
         task.setCompleted(false);
 
         tasks.add(task);

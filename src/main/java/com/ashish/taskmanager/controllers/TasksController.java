@@ -30,7 +30,7 @@ public class TasksController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<TaskEntity> getTaskById(int id) {
+    public ResponseEntity<TaskEntity> getTaskById(@PathVariable("id") Integer id) {
         var task = tasksService.getTaskById(id);
 
         if (task == null) {
